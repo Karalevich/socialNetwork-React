@@ -1,0 +1,9 @@
+.checkbox {
+    display: flex;
+}
+
+.error {
+    color: red;
+    background-color: white;
+    width: 200px;
+}

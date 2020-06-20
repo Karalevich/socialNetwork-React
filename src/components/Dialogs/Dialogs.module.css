@@ -1,0 +1,33 @@
+.dialogs {
+    display: flex;
+}
+
+.dialogsItems {
+    padding: 10px;
+}
+
+.dialog {
+    padding: 15px;
+}
+
+.dialogsItems a {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.dialogsItems a.active {
+    color: gold;
+}
+
+.messages {
+    padding: 10px;
+    color: aliceblue;
+}
+
+.messages .message {
+    padding: 10px;
+}
+
+.textarea {
+    align-self: flex-end;
+}

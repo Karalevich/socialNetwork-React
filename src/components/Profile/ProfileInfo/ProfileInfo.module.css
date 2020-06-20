@@ -1,0 +1,29 @@
+.profile {
+    display: flex;
+}
+
+.description {
+    padding: 5px;
+}
+
+.img {
+    width: 100%;
+}
+
+.name {
+    font-size: 24px;
+    color: white;
+    padding: 5px;
+}
+
+.aboutMe {
+    font-size: 16px;
+    color: black;
+    padding: 5px;
+}
+
+.contact {
+    align-self: flex-end;
+    padding: 5px;
+    display: block;
+}

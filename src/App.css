@@ -1,0 +1,14 @@
+.app-wrapper {
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.app-wrapper-content {
+    width: 75%;
+    background-color: blueviolet;
+    margin-left: 10px;
+    margin-top: 10px;
+}

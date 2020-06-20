@@ -1,0 +1,25 @@
+import React from 'react';
+import {Field, reduxForm} from "redux-form";
+import classes from './PostForm.module.css';
+import {FormControl } from "../Common/ComponentForm/FormControl";
+import {maxLength, required} from "./Validations/Validation";
+
+const maxLength30 = maxLength(30);
+
+const MessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+                <div className={classes.textarea}>
+                    <Field placeholder='Message text' element='textarea' name='message' component={FormControl }
+                           validate={[required, maxLength30]}/>
+                </div>
+                <div className={classes.button}>
+                    <button type='submit'>Send</button>
+                </div>
+            </form>
+    )
+}
+
+export default reduxForm({form: 'message'})(MessageForm)
+
+
