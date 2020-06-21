@@ -1,17 +1,5 @@
-.selectedPage {
-    font-weight: bold;
-}
-
 .users {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
-}
-
-.pageNumber{
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: 5px;
-    margin-left: 5px;
 }

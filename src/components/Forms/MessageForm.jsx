@@ -6,9 +6,9 @@ import {maxLength, required} from "./Validations/Validation";
 
 const maxLength30 = maxLength(30);
 
-const MessageForm = (props) => {
+const MessageForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
                 <div className={classes.textarea}>
                     <Field placeholder='Message text' element='textarea' name='message' component={FormControl }
                            validate={[required, maxLength30]}/>

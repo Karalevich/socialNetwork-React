@@ -1,0 +1,11 @@
+.pageNumber{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.selectedPage {
+    font-weight: bold;
+}

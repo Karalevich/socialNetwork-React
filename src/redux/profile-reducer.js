@@ -1,9 +1,9 @@
 import {ProfileAxios} from "../api/api";
 
-const ADD_POST = 'ADD_POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
-const DELETE_POST = 'DELETE_POST';
+const ADD_POST = 'profile/ADD_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_USER_STATUS = 'profile/SET_USER_STATUS';
+const DELETE_POST = 'profile/DELETE_POST';
 let initialState = {
     posts: [
         {id: 1, message: 'hi how are you?', likeCount: '15'},
@@ -44,34 +44,32 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile});
-export const setUserStatus = (status) => ({type:SET_USER_STATUS, status});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 export const addNewPostActionCreator = (newPost) => ({type: ADD_POST, newPost});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 export const getUserProfile = (id) => {
-    return (dispatch) => {
-        ProfileAxios.getProfile(id).then(response => {
-            dispatch(setUserProfile(response.data));
-        });
+    return async (dispatch) => {
+        const response = await ProfileAxios.getProfile(id);
+        dispatch(setUserProfile(response.data));
     }
 }
 
 export const getUserStatus = (id) => {
-    return (dispatch) => {
-        ProfileAxios.getStatus(id).then(response => {
-            dispatch(setUserStatus(response.data));
-        });
+    return async (dispatch) => {
+        const response = await ProfileAxios.getStatus(id);
+        dispatch(setUserStatus(response.data));
     }
 }
 
 export const updateUserStatus = (status) => {
-    return (dispatch) => {
-        ProfileAxios.updateStatus(status).then(response => {
-            if(response.data.resultCode === 0) {
-                dispatch(setUserStatus(status));
-            }
-        });
+    return async (dispatch) => {
+        const response = await ProfileAxios.updateStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(status));
+        }
+
     }
 }
 

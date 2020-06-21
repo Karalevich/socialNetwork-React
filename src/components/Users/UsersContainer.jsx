@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import {followMC, getPage, getUser,setTotalCount,unfollowMC} from "../../redux/users-reducer";
+import {follow, getPage, getUser,setTotalCount,unfollow} from "../../redux/users-reducer";
 import {
     getCurrentPage,
     getFollowingInProgress, getIsFetching,
@@ -14,7 +14,8 @@ import {
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-        this.props.getUser(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props;
+        this.props.getUser(currentPage, pageSize)
     }
 
     addNewUsers = () => {
@@ -22,15 +23,16 @@ class UsersAPI extends React.Component {
     }
 
     onPageChange = (numberPage) => {
-        this.props.getPage(numberPage,this.props.pageSize)
+        const {getPage, pageSize} = this.props;
+        getPage(numberPage,pageSize)
     }
 
     render = () => {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users users={this.props.users}
-                   followMC={this.props.followMC}
-                   unfollowMC={this.props.unfollowMC}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
                    totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -54,8 +56,8 @@ const mapStateToProps = (state) => {
 
 
 const UsersContainer = connect(mapStateToProps, {
-    followMC,
-    unfollowMC,
+    follow,
+    unfollow,
     setTotalCount,
     getUser,
     getPage

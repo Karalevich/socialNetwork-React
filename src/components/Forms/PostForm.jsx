@@ -6,10 +6,10 @@ import {FormControl } from "../Common/ComponentForm/FormControl";
 
 const maxLength50 = maxLength(50);
 
-const PostForm = (props) => {
+const PostForm = ({handleSubmit}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className={classes.textarea}>
                 <Field placeholder='Post text' element='textarea' name='post' component={FormControl } validate={[required, maxLength50]} />
             </div>

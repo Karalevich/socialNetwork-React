@@ -6,10 +6,10 @@ import classes from './LoginForm.module.css';
 
 const maxLength25 = maxLength(25);
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder='email' name='email' element='input'
                        component={FormControl} validate={[required, maxLength25]}/>
@@ -19,7 +19,7 @@ const LoginForm = (props) => {
                        component={FormControl} validate={[required, maxLength25]}/>
             </div>
             <div className={classes.error}>
-            {props.error && <div>{props.error}</div>}
+            {error && <div>{error}</div>}
             </div>
             <div className={classes.checkbox}>
                 <Field type='checkbox' name='rememberMe' element='input'

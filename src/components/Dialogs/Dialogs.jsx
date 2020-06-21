@@ -5,17 +5,17 @@ import DialogItem from "./DialogItems/DialogItem";
 import Avatar from "./Avatars/Avatar";
 import MessageForm from "../Forms/MessageForm";
 
-const Dialogs = (props) => {
+const Dialogs = ({dialogsPage,addNewMessage}) => {
 
-    let dialogsElement = props.dialogsPage.dialogs
+    let dialogsElement = dialogsPage.dialogs
         .map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElement = props.dialogsPage.messages
+    let messageElement = dialogsPage.messages
         .map(message => <Message message={message.message}/>);
-    let avatarElement = props.dialogsPage.avatars
+    let avatarElement = dialogsPage.avatars
         .map(avatar => <Avatar img={avatar.img}/>);
 
     const onSubmit = (formData) => {
-        props.addNewMessage(formData.message);
+        addNewMessage(formData.message);
     }
 
     return (

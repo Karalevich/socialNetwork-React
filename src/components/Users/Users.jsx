@@ -1,36 +1,26 @@
 import React from 'react';
 import classes from "./Users.module.css";
 import User from "./User/User";
+import Paginator from "../Common/Paginator/Paginator";
 
 
-const Users = (props) => {
-    let userElement = props.users.map(user => <User state={user}
-                                                    followMC={props.followMC}
-                                                    unfollowMC={props.unfollowMC}
-                                                    followingInProgress={props.followingInProgress}/>);
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-    let pageNumberElement = pages.map(page => {
-        return <button className={props.currentPage === page && classes.selectedPage}
-                     onClick={() => {
-                         props.onPageChange(page)
-                     }}>{page}</button>
-    });
+const Users = ({users, follow, unfollow, followingInProgress, addNewUsers, totalUsersCount, pageSize, currentPage, onPageChange}) => {
+    let userElement = users.map(user => <User state={user}
+                                              follow={follow}
+                                              unfollow={unfollow}
+                                              followingInProgress={followingInProgress}/>);
 
     return (
         <div className={classes.usersBlock}>
             <h3>Users</h3>
             <div className={classes.pageNumber}>
-                {pageNumberElement}
+                <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onPageChange={onPageChange}/>
             </div>
             <div className={classes.users}>
                 {userElement}
             </div>
             <div className={classes.button}>
-                <button onClick={props.addNewUsers}>Show more</button>
+                <button onClick={addNewUsers}>Show more</button>
             </div>
         </div>
     )

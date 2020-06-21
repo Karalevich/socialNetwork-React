@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
-import {withRouter, useHistory} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
 import {geAuthUserId, getIsAuth, getProfile, getStatus} from "../../redux/Selectors/Profile-selectors";
@@ -14,9 +14,6 @@ class ProfileAPI extends React.Component {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authUserId;
-            if (!userId) {
-                this.props.history.push("/login");
-            }
         }
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
@@ -28,7 +25,6 @@ class ProfileAPI extends React.Component {
                         status={this.props.status}
                         updateUserStatus={this.props.updateUserStatus}/>
     }
-
 }
 
 const mapStateToProps = (state) => {

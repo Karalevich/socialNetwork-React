@@ -1,12 +1,13 @@
 import {UserAxios} from "../api/api";
+import {converter} from "../components/Utilits/converter";
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
-const CHANGE_IS_FETCHING = 'CHANGE_IS_FETCHING';
-const DISABLE_BUTTON = 'DISABLE_BUTTON';
+const FOLLOW = 'user/FOLLOW';
+const UNFOLLOW = 'user/UNFOLLOW';
+const SET_USERS = 'user/SET-USERS';
+const SET_CURRENT_PAGE = 'user/SET_CURRENT_PAGE';
+const SET_TOTAL_COUNT = 'user/SET_TOTAL_COUNT';
+const CHANGE_IS_FETCHING = 'user/CHANGE_IS_FETCHING';
+const DISABLE_BUTTON = 'user/DISABLE_BUTTON';
 
 let initialState = {
     users: [],
@@ -22,23 +23,13 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW: {
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (action.id === user.id) {
-                        return {...user, followed: true}
-                    }
-                    return user
-                })
+                users: converter(state.users, action.id, 'id', {followed: true})
             }
         }
         case UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if (action.id === user.id) {
-                        return {...user, followed: false}
-                    }
-                    return user
-                })
+                users: converter(state.users, action.id, 'id', {followed: true})
             }
         }
         case SET_USERS: {
@@ -94,45 +85,42 @@ export const disableButton = (isFetching, id) => ({type: DISABLE_BUTTON, isFetch
 
 
 export const getUser = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsFetching(true));
-        UserAxios.getUsers(currentPage, pageSize).then(data => {
-            dispatch(changeIsFetching(false));
-            dispatch(setUsers(data.items));
-            dispatch(setTotalCount(data.totalCount));
-        });
+        const data = await UserAxios.getUsers(currentPage, pageSize);
+        dispatch(changeIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalCount(data.totalCount));
     }
 }
 export const getPage = (numberPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(changeIsFetching(true));
         dispatch(setCurrentPage(numberPage));
-        UserAxios.getUsers(numberPage, pageSize).then(data => {
-            dispatch(changeIsFetching(false));
-            dispatch(setUsers(data.items));
-        });
+        const data = await UserAxios.getUsers(numberPage, pageSize)
+        dispatch(changeIsFetching(false));
+        dispatch(setUsers(data.items));
     }
 }
-export const unfollowMC = (id) => {
+
+export const followUnfollow = async (id, dispatch, api, action) => {
+    dispatch(disableButton(true, id));
+    const data = await api(id)
+    if (data.resultCode === 0) {
+        dispatch(action(id));
+    }
+    dispatch(disableButton(false, id));
+}
+
+export const unfollow = (id) => {
     return (dispatch) => {
-        dispatch(disableButton(true, id));
-        UserAxios.unfollow(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollowSuccess(id));
-            }
-            dispatch(disableButton(false, id));
-        });
+        followUnfollow(id, dispatch, UserAxios.unfollow.bind(UserAxios), unfollowSuccess);
     }
 }
-export const followMC = (id) => {
+
+export const follow = (id) => {
     return (dispatch) => {
-        dispatch(disableButton(true, id));
-        UserAxios.follow(id).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followSuccess(id));
-            }
-            dispatch(disableButton(false, id));
-        });
+        followUnfollow(id, dispatch, UserAxios.follow.bind(UserAxios), followSuccess);
     }
 }
 

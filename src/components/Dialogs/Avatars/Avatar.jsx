@@ -2,10 +2,10 @@ import React from 'react';
 import classes from './Avatar.module.css'
 
 
-const Avatar = (props) => {
+const Avatar = ({img}) => {
     return (
         <div className={classes.item}>
-            <img src={props.img}></img>
+            <img src={img}></img>
         </div>
 
     )

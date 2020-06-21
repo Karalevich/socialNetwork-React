@@ -3,9 +3,9 @@ import classes from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
  import NavbarFriends from "./NavbarFriends/NavbarFriends";
 
-const Navbar = (props) => {
+const Navbar = ({friends}) => {
 
-    let bestFriends = props.friends.slice(0,3)
+    let bestFriends = friends.slice(0,3)
     let friendsElement = bestFriends
         .map(friend => <NavbarFriends name={friend.name} id={friend.id} img={friend.img}/>);
     return (

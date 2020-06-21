@@ -5,31 +5,31 @@ import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import {updateUserStatus} from "../../../redux/profile-reducer";
 import ProfileStatusHooks from "./ProfileStatus/ProfileStatus";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return (
         <div className={classes.profile}>
             <div className={classes.main}>
                 <div className={classes.name}>
-                    {props.profile.fullName}
+                    {profile.fullName}
                 </div>
                 <div className={classes.aboutMe}>
-                    {props.profile.aboutMe}
+                    {profile.aboutMe}
                 </div>
                 <div className={classes.aboutMe}>
-                    <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                    <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
                 </div>
                 <div className={classes.description}>
-                    <img src={props.profile.photos.large}/>
+                    <img src={profile.photos.large}/>
                 </div>
             </div>
             <div className={classes.contact}>
-                <div>{props.profile.contacts.facebook}</div>
-                <div>{props.profile.contacts.vk}</div>
-                <div>{props.profile.contacts.instagram}</div>
-                <div>{props.profile.contacts.github}</div>
+                <div>{profile.contacts.facebook}</div>
+                <div>{profile.contacts.vk}</div>
+                <div>{profile.contacts.instagram}</div>
+                <div>{profile.contacts.github}</div>
             </div>
         </div>
     )
