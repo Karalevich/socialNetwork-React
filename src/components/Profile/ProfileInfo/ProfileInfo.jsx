@@ -6,7 +6,6 @@ import {updateUserStatus} from "../../../redux/profile-reducer";
 import ProfileStatusHooks from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
-
     if (!props.profile) {
         return <Preloader/>
     }

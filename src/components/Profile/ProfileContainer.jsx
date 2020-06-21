@@ -8,28 +8,28 @@ import {compose} from "redux";
 import {geAuthUserId, getIsAuth, getProfile, getStatus} from "../../redux/Selectors/Profile-selectors";
 
 
-const ProfileAPI = (props) => {
+class ProfileAPI extends React.Component {
 
-    let userId = props.match.params.userId;
-/*    const history = useHistory();
-    history.push('/login')*/
-
-    if (!userId) {
-        userId = props.authUserId;
-
+    componentDidMount() {
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = this.props.authUserId;
+            if (!userId) {
+                this.props.history.push("/login");
+            }
+        }
+        this.props.getUserProfile(userId);
+        this.props.getUserStatus(userId);
     }
 
-    props.getUserProfile(userId);
-    props.getUserStatus(userId);
-
-
-    return <Profile {...props}
-                    profile={props.profile}
-                    status={props.status}
-                    updateUserStatus={props.updateUserStatus}/>
+    render() {
+        return <Profile {...this.props}
+                        profile={this.props.profile}
+                        status={this.props.status}
+                        updateUserStatus={this.props.updateUserStatus}/>
+    }
 
 }
-
 
 const mapStateToProps = (state) => {
     return {
