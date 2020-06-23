@@ -14,7 +14,7 @@ const Users = ({users, follow, unfollow, followingInProgress, addNewUsers, total
         <div className={classes.usersBlock}>
             <h3>Users</h3>
             <div className={classes.pageNumber}>
-                <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onPageChange={onPageChange}/>
+                <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onPageChange={onPageChange}/>
             </div>
             <div className={classes.users}>
                 {userElement}

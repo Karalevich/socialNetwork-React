@@ -2,8 +2,6 @@ import React from 'react';
 import classes from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import {updateUserStatus} from "../../../redux/profile-reducer";
-import ProfileStatusHooks from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = ({profile, status, updateUserStatus}) => {
     if (!profile) {

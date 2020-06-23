@@ -4,7 +4,6 @@ import Post from './Post/Post';
 import PostForm from "../../Forms/PostForm";
 
 function MyPosts(props) {
-    console.log("MyPosts")
     let postElement = props.posts
         .map(post => <Post message={post.message} likeCount={post.likeCount} id={post.id}/>);
 
