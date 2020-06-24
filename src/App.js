@@ -1,20 +1,21 @@
 import React from 'react';
 import './App.css';
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import NavbarContainer from "./components/Navbar/NavbarContainer";
-import FriendsContainer from "./components/Friends/FriendsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
 import {Route, withRouter} from "react-router-dom";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initialized} from "./redux/app-reducer";
 import Preloader from "./components/Common/Preloader/Preloader";
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const FriendsContainer = React.lazy(() => import('./components/Friends/FriendsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const News = React.lazy(() => import('./components/News/News'));
+const Music = React.lazy(() => import('./components/Music/Music'));
+const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const Login = React.lazy(() => import('./components/Login/Login'));
 
 class App extends React.Component {
 
@@ -23,22 +24,24 @@ class App extends React.Component {
     }
 
     render() {
-        if(!this.props.initialize) {
-           return <Preloader/>
+        if (!this.props.initialize) {
+            return <Preloader/>
         }
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavbarContainer/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/friends' render={() => <FriendsContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
+                    <React.Suspense fallback={<Preloader/>}>
+                            <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                            <Route path='/friends' render={() => <FriendsContainer/>}/>
+                            <Route path='/users' render={() => <UsersContainer/>}/>
+                            <Route path='/news' render={() => <News/>}/>
+                            <Route path='/music' render={() => <Music/>}/>
+                            <Route path='/settings' render={() => <Settings/>}/>
+                            <Route path='/login' render={() => <Login/>}/>
+                    </React.Suspense>
                 </div>
             </div>
         );
@@ -54,5 +57,5 @@ const mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps,{initialized})
+    connect(mapStateToProps, {initialized})
 )(App);
