@@ -39,7 +39,13 @@ export class ProfileAxios {
     }
 
     static setPhoto(photo) {
-        return instance.put(`profile/photo`, {photo});
+        const formData = new FormData();
+        formData.append('image', photo)
+        return instance.put(`profile/photo`, formData,{
+            headers: {
+                'Content-type': 'multipart/form-data'
+            }
+        });
     }
     static setProfile(profile) {
         return instance.put(`profile/`, {profile});

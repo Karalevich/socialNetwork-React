@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus, savePhoto} from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
@@ -10,7 +10,7 @@ import {geAuthUserId, getIsAuth, getProfile, getStatus} from "../../redux/Select
 
 class ProfileAPI extends React.Component {
 
-    componentDidMount() {
+    getUserData() {
         let userId = this.props.match.params.userId;
         if (!userId) {
             userId = this.props.authUserId;
@@ -19,8 +19,20 @@ class ProfileAPI extends React.Component {
         this.props.getUserStatus(userId);
     }
 
+    componentDidMount() {
+        this.getUserData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.getUserData();
+        }
+    }
+
     render() {
         return <Profile {...this.props}
+                        savePhoto={this.props.savePhoto}
+                        isOwner={!this.props.match.params.userId}
                         profile={this.props.profile}
                         status={this.props.status}
                         updateUserStatus={this.props.updateUserStatus}/>
@@ -32,12 +44,12 @@ const mapStateToProps = (state) => {
         profile: getProfile(state),
         status: getStatus(state),
         authUserId: geAuthUserId(state),
-        isAuth: getIsAuth(state)
+        isAuth: getIsAuth(state),
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto}),
     withRouter,
     withAuthRedirect)(ProfileAPI)
 
