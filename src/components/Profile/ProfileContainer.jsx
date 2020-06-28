@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getUserProfile, getUserStatus, updateUserStatus, savePhoto} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile} from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
@@ -30,8 +30,8 @@ class ProfileAPI extends React.Component {
     }
 
     render() {
-        return <Profile {...this.props}
-                        savePhoto={this.props.savePhoto}
+        return <Profile savePhoto={this.props.savePhoto}
+                        saveProfile={this.props.saveProfile}
                         isOwner={!this.props.match.params.userId}
                         profile={this.props.profile}
                         status={this.props.status}
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile}),
     withRouter,
     withAuthRedirect)(ProfileAPI)
 

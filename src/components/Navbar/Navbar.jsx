@@ -7,7 +7,7 @@ const Navbar = ({friends}) => {
 
     let bestFriends = friends.slice(0,3)
     let friendsElement = bestFriends
-        .map(friend => <NavbarFriends name={friend.name} id={friend.id} img={friend.img}/>);
+        .map(friend => <NavbarFriends name={friend.name} key={friend.id} id={friend.id} img={friend.img}/>);
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>

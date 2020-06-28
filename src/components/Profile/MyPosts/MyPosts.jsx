@@ -5,7 +5,7 @@ import PostForm from "../../Forms/PostForm";
 
 function MyPosts(props) {
     let postElement = props.posts
-        .map(post => <Post message={post.message} likeCount={post.likeCount} id={post.id}/>);
+        .map(post => <Post message={post.message} key={post.id} likeCount={post.likeCount} id={post.id}/>);
 
     const onSubmit = (formData) => {
         props.addNewPost(formData.post);

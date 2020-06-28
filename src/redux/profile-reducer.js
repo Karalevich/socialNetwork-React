@@ -1,4 +1,5 @@
 import {ProfileAxios} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'profile/ADD_POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -53,7 +54,7 @@ const profileReducer = (state = initialState, action) => {
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
-export const addNewPostActionCreator = (newPost) => ({type: ADD_POST, newPost});
+export const addNewPost = (newPost) => ({type: ADD_POST, newPost});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserPhoto = (photo) => ({type: SET_USER_PHOTO, photo});
 
@@ -61,6 +62,23 @@ export const getUserProfile = (id) => {
     return async (dispatch) => {
         const response = await ProfileAxios.getProfile(id);
         dispatch(setUserProfile(response.data));
+    }
+}
+
+export const saveProfile = (profile) => {
+    return async (dispatch, getState) => {
+        const userId = getState().authUser.id
+        const response = await ProfileAxios.saveProfile(profile);
+        if(response.data.resultCode === 0){
+            dispatch(getUserProfile(userId));
+        }else {
+            const input = response.data.messages[0].slice(response.data.messages[0].indexOf('>') + 1, response.data.messages[0].length - 1).toLowerCase()
+            const error = {}
+            error['contacts']= {};
+            error['contacts'][input]= response.data.messages[0].slice(0, response.data.messages[0].indexOf('(') - 1);
+            dispatch(stopSubmit('profile', error ));
+        }
+        return response
     }
 }
 

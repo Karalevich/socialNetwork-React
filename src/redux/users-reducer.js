@@ -29,7 +29,7 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW: {
             return {
                 ...state,
-                users: converter(state.users, action.id, 'id', {followed: true})
+                users: converter(state.users, action.id, 'id', {followed: false})
             }
         }
         case SET_USERS: {

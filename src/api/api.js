@@ -47,8 +47,8 @@ export class ProfileAxios {
             }
         });
     }
-    static setProfile(profile) {
-        return instance.put(`profile/`, {profile});
+    static saveProfile(profile) {
+        return instance.put(`profile`, profile);
     }
 }
 

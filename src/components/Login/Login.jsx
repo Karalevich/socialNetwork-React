@@ -3,7 +3,7 @@ import classes from './Login.module.css';
 import LoginForm from "../Forms/LoginForm";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const Login = ({isAuth, login}) => {
 

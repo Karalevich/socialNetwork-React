@@ -32,4 +32,5 @@ const LoginForm = ({handleSubmit, error}) => {
     )
 }
 
+
 export default reduxForm({form: 'login'})(LoginForm)
