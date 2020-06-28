@@ -58,13 +58,20 @@ export class AuthorAxios {
             .then(response => response.data)
     }
 
-    static login(email, password, rememberMe = false) {
-        return instance.post(`auth/login`,{email, password, rememberMe})
+    static login(email, password, rememberMe = false, captcha = null) {
+        return instance.post(`auth/login`,{email, password, rememberMe, captcha})
             .then(response => response.data)
     }
 
     static logout() {
         return instance.delete(`auth/login`)
+            .then(response => response.data)
+    }
+}
+
+export class SecurityAxios {
+    static getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`)
             .then(response => response.data)
     }
 }

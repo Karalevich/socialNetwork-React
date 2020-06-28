@@ -6,7 +6,7 @@ import classes from './LoginForm.module.css';
 
 const maxLength25 = maxLength(25);
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
 
     return (
         <form onSubmit={handleSubmit}>
@@ -24,6 +24,11 @@ const LoginForm = ({handleSubmit, error}) => {
             <div className={classes.checkbox}>
                 <Field type='checkbox' name='rememberMe' element='input'
                        component={FormControl}/> remember Me
+            </div>
+            <div>
+                <img src={captchaUrl} alt=""/>
+                {captchaUrl && <Field placeholder='captcha' name='captcha' element='input'
+                                      component={FormControl} validate={[required]}/>}
             </div>
             <div>
                 <button type='submit'>Login</button>
