@@ -9,8 +9,7 @@ const User = ({state, followingInProgress, unfollow, follow}) => {
                 <div className={classes.photo}>
                     <NavLink to={`/profile/` + state.id}>
                         <div className={classes.avatar}>
-                            <img
-                                src={state.photos.small !== null ? state.photos.small : userFhoto}></img>
+                            <img src={state.photos.small !== null ? state.photos.small : userFhoto} alt='users` avatars'/>
                         </div>
                     </NavLink>
                     <div className={classes.button}>

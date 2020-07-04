@@ -1,13 +1,13 @@
 import React from 'react';
 import classes from './NavbarFirends.module.css';
-import Avatar from "../../Dialogs/Avatars/Avatar";
+import DialogItem from "../../Dialogs/DialogItems/DialogItem";
 
 
 const NavbarFriends = (props) => {
 
     return (
         <div className={classes.name}>
-            <Avatar img={props.img}/>
+            <DialogItem img={props.img}/>
             {props.name}
         </div>
     )

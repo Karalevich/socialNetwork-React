@@ -1,11 +1,42 @@
-
-.item{
-    color:white;
+.item {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    background: #fdfdfd;
 }
 
 .item img {
     width: 50px;
+    border-radius: 50%;
 }
- .like {
-    color:red;
+
+.like i {
+    color: red;
+}
+
+.me {
+    display: flex;
+    padding: 5px;
+}
+
+.name {
+    color: #007bff;
+}
+
+.postText {
+    color: #545454;
+}
+
+.list {
+    display: flex;
+    padding: 10px 0;
+}
+
+ul li {
+    margin-right: 20px;
+    list-style-type: none;
+}
+
+ul li ins {
+    text-decoration: none;
 }

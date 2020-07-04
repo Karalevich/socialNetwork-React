@@ -18,3 +18,11 @@ export const getPosts = (state) => {
     return  state.profilePage.posts
 }
 
+export const getPhoto = (state) => {
+    return  state.profilePage.profile.photos.small
+}
+
+export const getName = (state) => {
+    return  state.profilePage.profile.fullName
+}
+

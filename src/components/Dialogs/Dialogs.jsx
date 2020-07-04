@@ -2,17 +2,14 @@ import React from 'react';
 import classes from './Dialogs.module.css'
 import Message from "./Message/Message";
 import DialogItem from "./DialogItems/DialogItem";
-import Avatar from "./Avatars/Avatar";
 import MessageForm from "../Forms/MessageForm";
 
-const Dialogs = ({dialogsPage,addNewMessage}) => {
+const Dialogs = ({dialogsPage, addNewMessage}) => {
 
     let dialogsElement = dialogsPage.dialogs
-        .map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>);
-    let messageElement = dialogsPage.messages
-        .map(message => <Message message={message.message} key={message.id}/>);
-    let avatarElement = dialogsPage.avatars
-        .map(avatar => <Avatar img={avatar.img}  key={avatar.id}/>);
+        .map(dialog => <DialogItem img={dialog.img} name={dialog.name} key={dialog.id} id={dialog.id}/>);
+    let messageElement = dialogsPage.messages.friends
+        .map((message, index) => <Message message={message.message} key={index}/>);
 
     const onSubmit = (formData) => {
         addNewMessage(formData.message);
@@ -20,18 +17,25 @@ const Dialogs = ({dialogsPage,addNewMessage}) => {
 
     return (
         <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
-                {dialogsElement}
+            <h6 className={classes.name}>All Messages</h6>
+            <div className={classes.users}>
+                <div className={classes.dialogsItems}>
+                    {dialogsElement}
+                </div>
+            </div>
+            <div className={classes.dialog}>
+                <div className={classes.userAvatar}>
+                    <img src={dialogsPage.dialogs[1].img} alt=""/>
+                    <span>{dialogsPage.dialogs[1].name}</span>
+                </div>
+                <div className={classes.messages}>
+                    {messageElement}
+                </div>
+                <div className={classes.textarea}>
+                    <MessageForm onSubmit={onSubmit}/>
+                </div>
             </div>
 
-            <span className={classes.avatars}> {avatarElement} </span>
-
-            <div className={classes.messages}>
-                {messageElement}
-            </div>
-            <div className={classes.textarea}>
-                <MessageForm onSubmit={onSubmit}/>
-            </div>
 
         </div>
     )

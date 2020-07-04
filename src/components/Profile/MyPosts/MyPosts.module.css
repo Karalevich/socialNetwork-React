@@ -3,5 +3,30 @@
 }
 
 .postBlock {
-    padding: 10px;
+    padding: 5px;
+    padding-left: 20px;
+    width: 70%;
+}
+
+.newPost {
+    background: #fdfdfd none repeat scroll 0 0;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    width: 100%;
+    padding: 25px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.newPostBox {
+    display: flex;
+}
+
+.newPostBox .figure img {
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.newPostInput {
+    width: 85.5%;
 }

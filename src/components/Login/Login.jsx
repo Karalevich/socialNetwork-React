@@ -16,7 +16,7 @@ const Login = ({isAuth, login, captchaUrl}) => {
 
     return (
         <div>
-            <h1 className={classes.login}>
+            <h1  className='container'>
                 Login
             </h1>
             <LoginForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>

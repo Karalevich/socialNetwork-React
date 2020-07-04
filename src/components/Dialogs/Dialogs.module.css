@@ -1,33 +1,72 @@
 .dialogs {
     display: flex;
+    width: 100%;
+    padding: 20px 20px 10px 30px;
+    flex-wrap: wrap;
+    color: #6c757d;;
+}
+
+.users {
+    width: 20%;
+    border-right: 1px solid #e1e8ed;
+}
+
+.name {
+    width: 100%;
 }
 
 .dialogsItems {
     padding: 10px;
+    border-bottom: 1px solid #e1e8ed;
+
 }
 
 .dialog {
+    width: 75%;
     padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e1e8ed;
 }
 
 .dialogsItems a {
     text-decoration: none;
-    color: aliceblue;
+    color: #6c757d;
 }
 
 .dialogsItems a.active {
-    color: gold;
+    color: #6c757d;
 }
 
 .messages {
     padding: 10px;
-    color: aliceblue;
+    color: black;
+    margin-top: -130px;
+    width: 100%;
+
 }
 
 .messages .message {
     padding: 10px;
+    background: rgba(202, 239, 142, .65);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 80%;
+    margin-bottom: 5px;
 }
 
 .textarea {
     align-self: flex-end;
+}
+
+.item img, .userAvatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.userAvatar {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #e1e8ed;
 }

@@ -1,11 +1,36 @@
 .header {
     display: flex;
     width: 100%;
-    background-color: green;
+    background-color: #fdfdfd;
+    border: 1px solid #ede9e9;
     justify-content: space-between;
+    border-radius: 5px;
+    padding: 0 30px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
+
+.header > button{
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    height: 35px;
+    background-color: #eaf4f3;
+    font-size: 14px;
+
+}
+
+.header > button:hover {
+    color: #07bffe;
+}
+
 .header img {
     width: 60px;
+    margin-left: 50px;
 }
 
 .login a {

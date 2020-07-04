@@ -18,10 +18,6 @@ class UsersAPI extends React.Component {
         this.props.getUser(currentPage, pageSize)
     }
 
-    addNewUsers = () => {
-        this.setUsers();
-    }
-
     onPageChange = (numberPage) => {
         const {getPage, pageSize} = this.props;
         getPage(numberPage,pageSize)

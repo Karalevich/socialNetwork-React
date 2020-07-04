@@ -7,7 +7,6 @@ const Profile = ({profile, status, updateUserStatus, isOwner, savePhoto, savePro
     return (
         <div>
             <ProfileInfo saveProfile={saveProfile} savePhoto={savePhoto} isOwner={isOwner} profile={profile} status={status} updateUserStatus={updateUserStatus}/>
-            <MyPostsContainer/>
         </div>
     )
 }
