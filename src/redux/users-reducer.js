@@ -15,7 +15,11 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    userDefault: {
+        email: 'korolevich199@mail.ru',
+        password: '87654321'
+    }
 };
 
 const usersReducer = (state = initialState, action) => {
