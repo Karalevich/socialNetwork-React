@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classes from "./Paginator.module.css";
+import cn from 'classnames'
 
 
 const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portionSize = 8}) => {
@@ -14,18 +15,26 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChange, portio
     const leftBorderPiece = (numberPiece - 1) * portionSize + 1;
     const rightBorderPiece = numberPiece  * portionSize;
 
-    return <div>
-        {numberPiece > 1 && <button onClick={ () => {setNumberPiece(numberPiece - 1)}}>PREV</button>}
+    return (
+        <nav aria-label="Page navigation example">
+            <ul className="pagination">
+        {numberPiece > 1 &&
+        <li className="page-item" onClick={ () => {setNumberPiece(numberPiece - 1)}}>
+            <a className="page-link bg-light" >Previous</a>
+        </li>}
         {    pages
             .filter(page => (page >= leftBorderPiece) && (page <= rightBorderPiece))
             .map((page, index) => {
-            return <button key={index} className={currentPage === page ? classes.selectedPage : undefined}
-                           onClick={() => {
-                               onPageChange(page)
-                           }}>{page}</button>
+            return <li className="page-item" key={index}
+                       onClick={() => {
+                           onPageChange(page)
+                       }}><a  className={cn("page-link bg-light", {[classes.selectedPage]:currentPage === page })}>{page}</a></li>
         })}
-        { pieceCount > numberPiece && <button onClick={ () => {setNumberPiece(numberPiece + 1)}}>NEXT</button>}
-    </div>
+        { pieceCount > numberPiece && <li className="page-item">
+            <a className="page-link bg-light" onClick={ () => {setNumberPiece(numberPiece + 1)}}>Next</a></li>}
+            </ul>
+    </nav>
+    )
 }
 
 export default Paginator;

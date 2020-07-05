@@ -5,7 +5,7 @@ const Friends = (props) => {
 
     return (
         <div>
-            News
+            Friends
         </div>
     )
 }

@@ -8,13 +8,13 @@ const maxLength30 = maxLength(30);
 
 const MessageForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={handleSubmit}>
-                <div className={classes.textarea}>
-                    <Field placeholder='Message text' element='textarea' name='message' component={FormControl }
+        <form className={classes.postForm} onSubmit={handleSubmit}>
+                <div>
+                    <Field className={classes.textarea} placeholder='Message text' element='textarea' name='message' component={FormControl }
                            validate={[required, maxLength30]}/>
                 </div>
                 <div className={classes.button}>
-                    <button type='submit'>Send</button>
+                    <button type='submit' className="btn btn-outline-primary">Send</button>
                 </div>
             </form>
     )

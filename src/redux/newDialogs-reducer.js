@@ -4,8 +4,8 @@ const ADD_MESSAGE = 'dialogs/ADD-MESSAGE';
 
 let initialState = {
     messages: {
-        my: [{id: 112, message: null}],
-        friends: [{id: 1, message: 'Hello'}]
+        my: [{id: 112, message: 'Oh, it cool!'}],
+        friends: [{id: 1, message: 'Hello. How are you? I`ve heard you`re looking for a new job as a Developer? I want to offer you some work :)'}]
     },
     dialogs: [
         {id: 1, name: 'Andrew', img: 'https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg'},
@@ -33,9 +33,14 @@ const newDialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             return {
                 ...state,
-                messages: {
+                messages:{
                     ...state.messages,
-                    my: [{id: 112, message: action.newMessage}]}
+                    my:[
+                        ...state.messages.my,
+                        {id: 112, message: action.newMessage}
+                    ]
+                }
+
             };
         }
         default:

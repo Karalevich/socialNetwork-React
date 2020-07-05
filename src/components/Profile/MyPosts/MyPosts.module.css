@@ -30,3 +30,13 @@
 .newPostInput {
     width: 85.5%;
 }
+
+@media (max-width: 1100px) {
+
+    .postBlock {
+        width: 100%;
+        padding-left: 0;
+    }
+
+
+}

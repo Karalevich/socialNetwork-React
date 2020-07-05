@@ -1,10 +1,41 @@
 .user{
     display: flex;
     justify-content: flex-start;
-    width: 20%;
+    width: 18%;
+    background: #fdfdfd;
+    border: 1px solid #ede9e9;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 10px;
 }
 
 .avatar img {
     width: 70px;
     height: 80px;
+}
+
+@media (min-width: 510px) and (max-width: 880px) {
+
+    .user{
+        width: 22%;
+    }
+
+}
+
+@media (min-width: 340px) and (max-width: 509px) {
+
+    .user{
+        width: 30%;
+    }
+
+}
+
+@media  (max-width: 340px) {
+
+    .user{
+        width: 45%;
+    }
+
 }
