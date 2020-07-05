@@ -129,6 +129,7 @@
     .dialog {
         border-bottom: none;
         overflow: hidden;
+        width: 100%;
     }
 
 
