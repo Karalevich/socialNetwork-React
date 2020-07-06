@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.authUser.isAuth,
         captchaUrl: state.authUser.captchaUrl,
-        user: state.authUser.userDefault
+        user: state.usersPage.userDefault
     }
 }
 
