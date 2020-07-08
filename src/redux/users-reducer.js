@@ -17,7 +17,7 @@ let initialState = {
     isFetching: false,
     followingInProgress: [],
     userDefault: {
-        email: 'korolevich199@mail.ru',
+        email: 'korolevich1994@mail.ru',
         password: '87654321'
     }
 };
